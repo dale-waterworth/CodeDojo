@@ -19,8 +19,12 @@ public class StringCalculator {
         return true;
     }
 
+    private String[] splitByComma(String toSplit) {
+        return toSplit.split(",");
+    }
+
     private Double calculateSumOfStringArray(String input) {
-        return Arrays.stream(splitNumbers(input))
+        return Arrays.stream(splitByComma(input))
                 .mapToDouble(Double::parseDouble)
                 .sum();
     }
@@ -28,14 +32,5 @@ public class StringCalculator {
     private BigDecimal roundToOneDecimalPlace(Double toRound) {
         return new BigDecimal(toRound).setScale(1, RoundingMode.HALF_UP)
                 .stripTrailingZeros();
-    }
-
-    private BigDecimal calculateSum(BigDecimal x, BigDecimal y) {
-        return x.add(y);
-    }
-
-    private String[] splitNumbers(String csvNumbers) {
-        var x = csvNumbers.split(",");
-        return x;
     }
 }

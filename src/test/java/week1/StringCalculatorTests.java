@@ -100,4 +100,6 @@ class StringCalculatorTests {
 
         assertEquals("3.3", result);
     }
+
+    // TODO: What happens if we add more fancy characters e.g. "1,2,!!!,?,@,4,:D"
 }
