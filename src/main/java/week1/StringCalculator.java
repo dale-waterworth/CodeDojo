@@ -6,16 +6,24 @@ import java.util.Arrays;
 
 public class StringCalculator {
     public String add(String csvNumbers) {
-        if (csvNumbers == null || csvNumbers.equals("")) {
-            return "0";
-        }
+        if(!inputIsValid(csvNumbers)) return "0";
 
-        var sum = Arrays.stream(splitNumbers(csvNumbers))
-                .mapToDouble(Double::parseDouble).sum();
+        var sum = calculateSumOfStringArray(csvNumbers);
 
         var roundedUpSum = new BigDecimal(sum).setScale(1, RoundingMode.HALF_UP).stripTrailingZeros();
 
         return String.valueOf(roundedUpSum);
+    }
+
+    private Boolean inputIsValid(String input){
+        if (input == null || input.equals("")) return false;
+        return true;
+    }
+
+    private Double calculateSumOfStringArray(String input){
+        return Arrays.stream(splitNumbers(input))
+                .mapToDouble(Double::parseDouble)
+                .sum();
     }
 
     private BigDecimal calculateSum(BigDecimal x, BigDecimal y) {
