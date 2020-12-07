@@ -5,14 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CodeDojoTest {
-
     @Test
     public void testReturns1() {
         var calc = new StringCalculator();
 
         var result = calc.add("1");
-        
-        assertEquals(result, "1");
+
+        assertEquals("1", result);
     }
 
     @Test
@@ -23,7 +22,7 @@ class CodeDojoTest {
 
         assertEquals( "3", result);
     }
-    
+
     @Test
     public void testEmptyStringReturn0() {
         var calc = new StringCalculator();
@@ -31,7 +30,8 @@ class CodeDojoTest {
         var result = calc.add("");
 
         assertEquals( "0", result);
-    }    
+    }
+
     @Test
     public void testNull() {
         var calc = new StringCalculator();
@@ -40,9 +40,6 @@ class CodeDojoTest {
 
         assertEquals("0", result);
     }
-    /**
-     * Section 2
-      */
 
     @Test
     public void testNewLineSeprator() {
@@ -52,5 +49,4 @@ class CodeDojoTest {
 
         assertEquals( "3.3", result);
     }
-    
 }
