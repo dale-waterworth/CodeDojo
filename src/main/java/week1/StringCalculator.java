@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
 
+// "1\n2,3" should return "6".
 public class StringCalculator {
     public String add(String csvNumbers) {
         if (!inputIsValid(csvNumbers)) return "0";
@@ -19,14 +20,18 @@ public class StringCalculator {
         return true;
     }
 
-    private String[] splitByComma(String toSplit) {
-        return toSplit.split(",");
+    public String[] splitByDelimiter(String toSplit) {
+        return toSplit.split("[\\n,]");
     }
 
     private Double calculateSumOfStringArray(String input) {
-        return Arrays.stream(splitByComma(input))
-                .mapToDouble(Double::parseDouble)
-                .sum();
+        try {
+            return Arrays.stream(splitByDelimiter(input))
+                    .mapToDouble(Double::parseDouble)
+                    .sum();
+        } catch (NumberFormatException nfe) {
+            throw new NumberFormatException("Number expected but '\\n' found at position 6.");
+        }
     }
 
     private BigDecimal roundToOneDecimalPlace(Double toRound) {
